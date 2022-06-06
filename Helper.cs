@@ -138,8 +138,6 @@ namespace YourProgramName
 
             string[] numberArr = new string[] { "ကျပ်", "ဆယ်", "ရာ", "ထောင်", "သောင်း", "သိန်း"};
             
-            //9,1 2 3 4 5 6
-            //    7-1 =6
             int strLen = strArr.Length - 1;
             int j = 0;
             string lakh = "";
