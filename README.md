@@ -19,4 +19,4 @@
     Convert english number to myanmar number
     
 # AddChar
-    Fill character to a specific to get length
+    Fill character to get specific length
