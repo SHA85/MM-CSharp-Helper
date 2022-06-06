@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Management;
+using System.Data.SqlClient;
 
 namespace YourProgramName
 {
@@ -162,6 +163,33 @@ namespace YourProgramName
             }
 
             return s;
+        }
+		
+		public static void DBBackUp()
+        {
+            using (SqlConnection cn = new SqlConnection(Helper.DbConn()))
+            {
+                using (var cmd = new SqlCommand() { Connection = cn })
+                {
+                    cn.Open();
+
+                    cmd.CommandText = "Backup database pos to disk = 'C:/SQLBK/test"+Helper.DateTimeString()+ ".bak'";
+
+                    cmd.ExecuteNonQuery();
+
+                    cn.Close();
+                }
+            }
+        }
+
+		/* 
+		 * Return Current DateTime as "YearMonthDayHourMinuteSecond" format string.
+		 * 20220612162327 => Year(2022), Month(06), Date(12), Hour(16), Minute(23), Second(27)
+		 */
+        public static string DateTimeString()
+        {
+            var dt = DateTime.Now;
+            return dt.ToString("yyyy") + dt.ToString("MM") + dt.ToString("dd") + dt.ToString("HH") + dt.ToString("mm") + dt.ToString("ss");
         }
     }
 }
